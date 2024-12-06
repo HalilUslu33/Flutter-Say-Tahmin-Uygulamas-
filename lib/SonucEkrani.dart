@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Sonucekrani extends StatefulWidget {
-  const Sonucekrani({super.key});
+
+  final bool sonuc;
+
+  const Sonucekrani({super.key, required this.sonuc});
 
   @override
   State<Sonucekrani> createState() => _SonucekraniState();
@@ -19,9 +22,9 @@ class _SonucekraniState extends State<Sonucekrani> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children:[
-            Image.asset("resimler/mutlu_resim.png"),
-            Text(
-              "Kazandınız",
+            widget.sonuc ? Image.asset("resimler/mutlu_resim.png") : Image.asset("resimler/uzgun_resim.png"),
+            Text( widget.sonuc ?
+              "Kazandınız" : "Kaybettiniz",
               style: TextStyle(color: Colors.black54, fontSize: 36),
             ),
             SizedBox(
@@ -35,7 +38,7 @@ class _SonucekraniState extends State<Sonucekrani> {
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () {
                   Navigator.pop(context);
-                   },
+                },
               ),
             ),
 
